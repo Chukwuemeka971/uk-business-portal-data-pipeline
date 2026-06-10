@@ -2,19 +2,11 @@
 
 ## Overview
 
-This project demonstrates the development of an end-to-end data pipeline that collects business directory information from the UK Business Portal website using Python.
+This project demonstrates the development of an end-to-end data pipeline that automatically collects business directory information from the UK Business Portal website using Python.
 
-The pipeline automates the extraction of publicly available business information across multiple business categories, performs data quality validation, and stores the resulting dataset in PostgreSQL for analysis.
+The pipeline dynamically discovers business categories, extracts publicly available business information, performs data quality validation, and stores the resulting dataset in PostgreSQL for analysis.
 
-The project was built to showcase practical skills in:
-
-* Web Scraping
-* Data Collection
-* Data Cleaning
-* Data Validation
-* ETL Development
-* PostgreSQL Integration
-* SQL Analytics
+The project was developed to showcase practical Data Engineering and Analytics skills, including web scraping, ETL development, data validation, database integration, and SQL analysis.
 
 ---
 
@@ -28,9 +20,9 @@ Business directories contain valuable information that can support:
 * Business intelligence
 * Contact database creation
 
-Manually collecting this information is time-consuming and inefficient.
+Manually collecting this information is inefficient and time-consuming.
 
-This project automates the extraction of business information and transforms it into a structured dataset suitable for analysis and reporting.
+This project automates the extraction of business information and transforms it into a structured dataset suitable for reporting, analytics, and downstream business applications.
 
 ---
 
@@ -38,7 +30,7 @@ This project automates the extraction of business information and transforms it 
 
 | Technology       | Purpose                         |
 | ---------------- | ------------------------------- |
-| Python           | Data Pipeline Development       |
+| Python           | Pipeline Development            |
 | Selenium         | Dynamic Website Automation      |
 | BeautifulSoup    | HTML Parsing                    |
 | Pandas           | Data Cleaning & Transformation  |
@@ -52,64 +44,67 @@ This project automates the extraction of business information and transforms it 
 
 ## Data Collected
 
-The scraper extracts the following information:
+The pipeline extracts the following information:
 
-| Column           | Description           |
-| ---------------- | --------------------- |
-| category         | Business Category     |
-| business_name    | Business Name         |
-| website          | Company Website       |
-| phone            | Contact Number        |
-| email            | Contact Email         |
-| logo_url         | Business Logo URL     |
-| profile_url      | Business Profile URL  |
-| scrape_timestamp | Timestamp of Scraping |
-| scrape_date      | Scrape Date           |
+| Column           | Description                  |
+| ---------------- | ---------------------------- |
+| category         | Business Category            |
+| business_name    | Business Name                |
+| website          | Company Website              |
+| phone            | Contact Number               |
+| email            | Contact Email                |
+| logo_url         | Business Logo URL            |
+| profile_url      | Business Profile URL         |
+| scrape_timestamp | Timestamp of Data Collection |
+| scrape_date      | Date of Data Collection      |
 
 ---
 
 ## Project Workflow
 
 ```text
-UK Business Portal
-        │
-        ▼
-    Selenium
-        │
-        ▼
-  BeautifulSoup
-        │
-        ▼
- Data Extraction
-        │
-        ▼
-    Pandas
-        │
-        ▼
-Data Validation
-        │
-        ▼
- PostgreSQL
-        │
-        ▼
- SQL Analysis
+UK Business Portal Website
+            │
+            ▼
+      Category Discovery
+            │
+            ▼
+         Selenium
+            │
+            ▼
+      BeautifulSoup
+            │
+            ▼
+     Data Extraction
+            │
+            ▼
+      Pandas DataFrame
+            │
+            ▼
+    Data Quality Checks
+            │
+            ▼
+       PostgreSQL
+            │
+            ▼
+        SQL Analysis
 ```
 
 ---
 
-## Project Features
+## Key Features
 
 ### Dynamic Category Discovery
 
-The scraper automatically discovers business categories from the website instead of relying on hardcoded URLs.
+The scraper automatically discovers available business categories instead of relying on hardcoded URLs.
 
 ### Automated Data Collection
 
-Business listings are extracted across all available categories using Selenium and BeautifulSoup.
+Business listings are extracted across multiple categories using Selenium and BeautifulSoup.
 
 ### Data Quality Validation
 
-The pipeline performs validation checks to identify:
+The pipeline automatically identifies:
 
 * Missing values
 * Duplicate records
@@ -119,19 +114,28 @@ The pipeline performs validation checks to identify:
 
 The cleaned dataset can be loaded directly into PostgreSQL for querying and analysis.
 
+### Business-Focused SQL Analysis
+
+The project includes SQL queries designed for:
+
+* Lead generation
+* Marketing analysis
+* Business intelligence
+* Data quality assessment
+
 ---
 
 ## Dataset Summary
 
-| Metric                   | Value    |
-| ------------------------ | -------- |
-| Total Businesses Scraped | 303      |
-| Total Columns            | 9        |
-| Duplicate Records        | 0        |
-| Missing Websites         | 1        |
-| Missing Phone Numbers    | 3        |
-| Missing Emails           | 0        |
-| Data Completeness        | Over 99% |
+| Metric                   | Value |
+| ------------------------ | ----- |
+| Total Businesses Scraped | 303   |
+| Total Columns            | 9     |
+| Duplicate Records        | 0     |
+| Missing Websites         | 1     |
+| Missing Phone Numbers    | 3     |
+| Missing Emails           | 0     |
+| Data Completeness        | >99%  |
 
 ---
 
@@ -149,6 +153,7 @@ uk-business-portal-data-pipeline/
 ├── sql/
 │   └── client_queries.sql
 │
+├── screenshots/
 │
 ├── .env
 ├── requirements.txt
@@ -161,33 +166,19 @@ uk-business-portal-data-pipeline/
 
 ### Source Business Listings
 
-The scraper extracts business information including company names, websites, phone numbers, email addresses, logos, and profile links.
-
-![Business Listings](screenshots/business_listing_example.png)
-
-### Category Discovery
-
-The scraper automatically identifies and stores available business categories.
-
-![Category Discovery](screenshots/category_discovery.png)
-
-### Category DataFrame
-
-Categories are transformed into a structured Pandas DataFrame before processing.
-
-![Categories DataFrame](screenshots/categories_dataframe.png)
-
-### Master Dataset
-
-The final dataset combines all extracted business records into a single DataFrame.
+The scraper extracts business names, websites, phone numbers, email addresses, logos, and profile links from each business listing.The final dataset combines all extracted business records into a single DataFrame.
 
 ![Master Dataset](screenshots/master_dataset.png)
 
+---
+
 ### Data Quality Validation
 
-Automated checks are performed to identify missing values and duplicate records.
+Automated validation checks identify missing values and duplicate records.
 
 ![Data Quality Report](screenshots/data_quality_report.png)
+
+---
 
 ### PostgreSQL Integration
 
@@ -195,17 +186,36 @@ The cleaned dataset is loaded into PostgreSQL for storage and querying.
 
 ![PostgreSQL Table](screenshots/postgresql_table.png)
 
-### SQL Analysis
-
-Business-focused SQL queries are used to generate insights from the dataset.
-
-![SQL Analysis](screenshots/sql_analysis.png)
 
 ---
 
-## Installation
+# Environment Setup
 
-### 1. Clone the Repository
+This project was developed using a dedicated Conda environment created from Anaconda Prompt.
+
+Create the environment:
+
+```bash
+conda create -n uk_business_env python=3.12
+```
+
+Activate the environment:
+
+```bash
+conda activate uk_business_env
+```
+
+Install required libraries:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Installation
+
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Chukwuemeka971/uk-business-portal-data-pipeline.git
@@ -213,35 +223,13 @@ git clone https://github.com/Chukwuemeka971/uk-business-portal-data-pipeline.git
 cd uk-business-portal-data-pipeline
 ```
 
-### 2. Create a Virtual Environment
-
-This project was developed using a dedicated Python virtual environment created from Anaconda Prompt.
+## 2. Activate the Conda Environment
 
 ```bash
-python -m venv uk_business_env
+conda activate uk_business_env
 ```
 
-Activate the environment:
-
-#### Windows
-
-```bash
-uk_business_env\Scripts\activate
-```
-
-#### Mac/Linux
-
-```bash
-source uk_business_env/bin/activate
-```
-
-### 3. Install Required Libraries
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configure Environment Variables
+## 3. Configure Environment Variables
 
 Create a `.env` file in the project root:
 
@@ -255,21 +243,21 @@ POSTGRES_DB=uk_business
 
 ---
 
-## Running the Project
+# Running the Project
 
-### Step 1: Launch Jupyter Notebook
+## Step 1: Launch Jupyter Notebook
 
 ```bash
 jupyter notebook
 ```
 
-### Step 2: Open the Notebook
+## Step 2: Open the Notebook
 
 ```text
 notebooks/uk_business_scraper.ipynb
 ```
 
-### Step 3: Run All Cells
+## Step 3: Run All Cells
 
 The pipeline will:
 
@@ -277,13 +265,13 @@ The pipeline will:
 2. Discover available categories
 3. Extract business listings
 4. Perform data quality validation
-5. Create the final dataset
+5. Generate the final dataset
 6. Export data to CSV
 7. Load data into PostgreSQL
 
 ---
 
-## Exported Dataset
+# Exported Dataset
 
 The final dataset is exported as:
 
@@ -293,7 +281,7 @@ data/uk_business_portal.csv
 
 ---
 
-## PostgreSQL Integration
+# PostgreSQL Integration
 
 The cleaned dataset is loaded directly into PostgreSQL using Pandas and SQLAlchemy.
 
@@ -308,9 +296,9 @@ master_df.to_sql(
 
 ---
 
-## Example SQL Analysis
+# Example SQL Analysis
 
-### Businesses by Category
+## Business Distribution by Category
 
 ```sql
 SELECT
@@ -321,7 +309,7 @@ GROUP BY category
 ORDER BY business_count DESC;
 ```
 
-### Businesses with Complete Contact Information
+## Businesses with Complete Contact Information
 
 ```sql
 SELECT
@@ -335,7 +323,7 @@ WHERE website IS NOT NULL
   AND email IS NOT NULL;
 ```
 
-Additional SQL queries are available in:
+Additional business-focused SQL queries are available in:
 
 ```text
 sql/client_queries.sql
@@ -343,7 +331,7 @@ sql/client_queries.sql
 
 ---
 
-## Skills Demonstrated
+# Skills Demonstrated
 
 * Web Scraping
 * Selenium Automation
@@ -358,7 +346,7 @@ sql/client_queries.sql
 
 ---
 
-## Future Improvements
+# Future Improvements
 
 * Scrape individual business profile pages
 * Implement incremental data loading
@@ -370,10 +358,10 @@ sql/client_queries.sql
 
 ---
 
-## Author
+# Author
 
-### Chukwuemeka Nwankwo
+## Chukwuemeka Nwankwo
 
 Data Analyst | Aspiring Data Engineer
 
-This project was developed as part of my data engineering portfolio to demonstrate practical experience in web scraping, ETL development, data quality validation, PostgreSQL integration, and SQL analytics.
+This project was developed as part of my Data Engineering portfolio to demonstrate practical experience in web scraping, ETL development, data quality validation, PostgreSQL integration, and SQL analytics.
